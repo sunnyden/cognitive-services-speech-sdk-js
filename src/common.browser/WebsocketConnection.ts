@@ -48,13 +48,17 @@ export class WebsocketConnection implements IConnection {
 
         if (queryParameters) {
             for (const paramName in queryParameters) {
-                if (paramName) {
+                if (!paramName) {
+                    continue;
+                }
+                const valueArray = queryParameters[paramName].split(",");
+                for (const value of valueArray) {
                     queryParams += ((i === 0) && (uri.indexOf("?") === -1)) ? "?" : "&";
 
                     const key = encodeURIComponent(paramName);
                     queryParams += key;
 
-                    let val = queryParameters[paramName];
+                    let val = value;
                     if (val) {
                         val = encodeURIComponent(val);
                         queryParams += `=${val}`;

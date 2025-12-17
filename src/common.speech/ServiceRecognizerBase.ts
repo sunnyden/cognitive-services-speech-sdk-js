@@ -186,6 +186,10 @@ export abstract class ServiceRecognizerBase implements IDisposable {
                 targetLanguages: languages,
             };
 
+            this.privSpeechContext.getContext().translationcontext = {
+                to: languages
+            };
+
             // Add category if specified
             if (categoryId !== undefined) {
                 this.privSpeechContext.getContext().translation.category = categoryId;
@@ -978,7 +982,9 @@ export abstract class ServiceRecognizerBase implements IDisposable {
                     this.privRequestSession.isRecognizing &&
                     this.privRequestSession.recogNumber === startRecogNumber) {
                     connection.send(
-                        new SpeechConnectionMessage(MessageType.Binary, "audio", this.privRequestSession.requestId, null, payload)
+                        new SpeechConnectionMessage(MessageType.Binary, "audio", this.privRequestSession.requestId, null, payload, null, {
+                            SpeakerId: "0:0:0"
+                        })
                     ).catch((): void => {
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         this.privRequestSession.onServiceTurnEndResponse(this.privRecognizerConfig.isContinuousRecognition).catch((): void => { });

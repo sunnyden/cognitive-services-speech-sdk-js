@@ -7,6 +7,7 @@
 import { HeaderNames } from "../common.speech/HeaderNames.js";
 import {
     ConnectionMessage as IntConnectionMessage,
+    IStringDictionary,
     MessageType
 } from "../common/Exports.js";
 import {
@@ -57,6 +58,11 @@ export abstract class ConnectionMessage {
      * Message headers can be accessed via this collection (e.g. "Content-Type").
      */
     public abstract get properties(): PropertyCollection;
+
+    /**
+     * A collection of headers and their values defined for this <see cref="ConnectionMessage"/>.
+     */
+    public abstract get headers(): IStringDictionary<string>;
 
     /**
      * Returns a string that represents the connection message.
@@ -126,6 +132,10 @@ export class ConnectionMessageImpl {
      */
     public get properties(): PropertyCollection {
         return this.privProperties;
+    }
+
+    public get headers(): IStringDictionary<string> {
+        return this.privConnectionMessage.headers ?? {};
     }
 
     /**

@@ -30,6 +30,14 @@ export class SpeechConnectionMessage extends ConnectionMessage {
             throw new ArgumentNullError("requestId");
         }
 
+        // if (path === "speech.context") {
+        //     body = "{\"phraseDetection\":{\"onSuccess\":{\"action\":\"Translate\"},\"onInterim\":{\"action\":\"Translate\"}},\"audio\":{\"streams\":{\"1\":null}}}";
+        // }
+
+        // if (path === "speech.config") {
+        //     body = "{\"context\":{\"system\":{\"version\":\"1.42.0\",\"name\":\"SpeechSDK-Sunny\",\"build\":\"Browser-eval\",\"lang\":\"C#\"},\"os\":{\"name\":\"Client\",\"version\":\"8\",\"platform\":\"Windows\"},\"audio\":{\"source\":{\"type\":\"Stream\",\"model\":\"\",\"samplerate\":\"16000\",\"bitspersample\":\"16\",\"channelcount\":\"1\"}}}}";
+        // }
+
         const headers: IStringDictionary<string> = {};
         headers[HeaderNames.Path] = path;
         headers[HeaderNames.RequestId] = requestId;

@@ -93,7 +93,6 @@
     "lint": "eslint -c .eslintrc.cjs --ext .ts src",
     "linttest": "eslint -c .eslintrc.cjs --ext .ts tests",
     "setversion": "chmod +x ./ci/set-version.sh && ./ci/set-version.sh",
-    "prepare": "npm run build",
     "setup": "npm install --package-lock-only --ignore-scripts --no-audit"
   },
   "jest-junit": {
